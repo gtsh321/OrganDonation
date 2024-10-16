@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap')
+
+.element {
+   box-sizing: border-box;
+   margin: 0;  
+   padding: 0;
+}
+
+html{
+    font-family : "Montserrat", sans-serif;
+    font-size: 62.5%;
+}
+
+/* **********************utility-class***************** */
+.container{
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+}
+.btn{
+    display: inline-block;
+    padding: 1em 2.5em;
+    text-decoration: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 1em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.btn-primary{
+color: #fff;
+background-color: #579d76;
+transition: color 1s ease-in-out;
+}
+
+.btn:hover{
+    background-color:  #316c4b;
+    transition: color 1s ease-in-out;
+}
+.btn:active{
+    background-color:  #19482e;
+    transition: color 1s ease-in-out;
+}
+
+/* ***************************navbar style************************ */
+/* for desktop mode */
+.navbar input[type='checkbox'],
+.navbar .hamburger-lines{
+    display: none;
+}
+.navbar{
+    box-shadow:0px 5px 5px 0px #ffffff;
+    position: fixed;
+    width: 100%;
+    background: #ffffff;
+    color: #000;
+    opacity: 0.95;
+    z-index: 999;
+}
+.navbar-container{
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    align-items: center;
+}
+.menu-items{
+display: flex;
+}
+.menu-items li{
+    list-style: none;
+    margin-left:1.5rem;
+    font-size: 1.8rem;
+}
+.logo{
+font-size: 3rem;
+}
+.navbar a{
+    color: #363535;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+.navbar a:hover{
+    color: rgb(13, 213, 146);  
+    transition: color 0.3s ease-in-out;
+}
+.navbar a:active{
+    color:  rgb(15, 84, 61);
+    transition: color 0.3s ease-in-out;
+}
+
+/* *******************show-case********************** */
+.main-title{
+   color:#fcffff;
+   letter-spacing: 1px;
+}
+.showcase-area{
+    height:80vh;
+    background: linear-gradient(rgba(11, 11, 11, 0.833),rgba(27, 27, 27, 0.74)),url('/images/handwithorgans1.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+}
+.showcase-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+}
+
+/* ***************************about********************************** */
+#about{
+    padding:50px 0px;
+    background:#f5f6f4;
+}
+.about-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+#about h2{
+    font-size:3.2rem;
+}
+#about p{
+    font-size: 1.76rem;
+    color: #1f1d1d;
+    letter-spacing: 0.5px;
+    word-spacing: 1px;
+}
+#about .small{
+    font-size:3rem;
+    color: #333434;
+    font-weight: 600;
+
+}
+.about-img{
+    flex:1 1 400px;
+    padding:30px;
+    transform: translateX(150%);  
+    object-fit: cover;
+    object-position: center;
+
+    animation: img-animation 1s ease-in-out forwards;                      
+}
+@keyframes img-animation{
+    100%{
+        transform: translate(0);
+    }
+}
+.about-text{
+    flex: 1 1 400px;
+    padding:0% 30px;
+    margin: auto;
+    transform: translateX(-150%);
+    object-fit: cover;
+    object-position: center;
+    animation: text-animation 1s ease-in-out forwards;
+}
+@keyframes text-animation {
+    100%{
+        transform: translate(0);
+    }
+}
+.about-img img{
+    display: block;
+    height: 400px;
+    max-width: 100%;
+    margin: auto;
+}
+
+/* **************footer********** */
+.footer{
+    text-align: center;
+    color: #363535;
+    background-color: #f5f6f4;
+}
+.footer span{
+    color: #444747;
+}
+
+/* ****************registration-form***************** */
+.registration-body{
+    margin: 0;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-family : "Montserrat", sans-serif;
+    font-size: 15px;
+
+}
+input{
+    display: block;
+    width: 100%;
+    padding: 0.75rem 0 0.75rem 0;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+label{
+    display: block;
+    margin:0.5rem 0 0.5rem 0;
+}
+
+/*### progressbar ###*/
+.progressbar{
+    position: relative ;
+    display: flex;
+    justify-content: space-between;
+    counter-reset: step;
+    margin: 2rem 4rem 6rem 4rem;
+}
+.progressbar::before,
+.progress{
+    content:"";
+    position: absolute;
+    top: 50%;
+    transform:translateY(-50%) ;
+    height: 4px;
+    width: 100%;
+    background-color: #dcdcdc; 
+    z-index: -1;
+}
+.progress{
+    background-color: rgb(18, 32, 152);
+    width: 0%;
+    transition: 0.3s;
+  }
+
+.progress-step{
+    width: 2.1878rem;
+    height: 2.1878rem;
+    background-color: #dcdcdc;
+    border-radius: 50% ; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+.progress-step::before{
+    counter-increment: step;
+    content: counter(step); 
+}
+
+.progress-step::after{
+    content: attr(data-title);
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    font-size: 1.5rem;
+    color: #666;
+}
+.progress-step-active{
+    background-color:  rgb(18, 32, 152);
+    color: #ffffff;
+
+}
+
+/*#######################*/
+.form{
+    width: clamp(500px,30% ,430px);
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 0.35rem;
+    padding: 1.5rem;
+}
+
+.form-step{
+  display: none;
+}
+.form-step-active{
+    display: block;
+}
+.input-group{
+    margin:2rem 0;
+}
+/************* button *************/
+.btns-group{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 1.5rem;
+}
+
+.button{
+    padding:1rem;
+    display: block;
+    text-decoration: none;
+    background-color: rgb(24, 87, 236);
+    color: white;
+    text-align: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+.width-50{
+    width: 50%;
+
+}
+.ml-auto{
+    margin-left: auto;
+}
+.button:hover{
+  box-shadow: 0 0 0 2px #fff,0 0 0 3px  rgb(65, 83, 253);
+  background-color: rgb(62, 81, 246);
+  transition: 0.3s;
+}
+.button:active{
+  background-color: rgb(20, 40, 85);
+}
+
+.text-center{
+    text-align: center; 
+}
+
+/*********for checkbox********/
+input.check { 
+    margin: 0px;
+    width: 10%;
+    display: inline-block;
+}
