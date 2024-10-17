@@ -317,3 +317,24 @@ input.check {
     width: 10%;
     display: inline-block;
 }
+
+/**********for log in form *********/
+.center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: block;
+    background-color: #f1f4f5;
+    padding:  3rem 10rem;
+    color: #252929;
+    border: 1px solid #484949;
+}
+
+.box{
+    margin: 2rem;
+    font-size: 2rem;
+}
+h3.forlogin-form{
+    text-align: center;
+}
