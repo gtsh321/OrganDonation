@@ -49,10 +49,11 @@
                 <label for="address">Donor's Address</label>
                 <textarea id="address" name="address" rows="4" cols="60" maxlength="300"></textarea>
             </div>
+            
             <!-- contact -->
             <div class="input-group">
                 <label for="contact">Donor's Contact</label>
-            <input type="tel" id="contact" name="contact" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" maxlength="10">
+            <input type="text" id="contact" name="contact"  maxlength="10" required>
             </div>
 
          <div class="">
@@ -83,14 +84,16 @@
             <label for="medical_history">Medical History:</label>
             <textarea id="medical_history" name="medical_history" rows="4" cols="50" placeholder="Any major illnesses or surgeries?"></textarea>    
         </div>
+  			
+<!-- concent -->
+<div class="input-group">
+    <label for="consent"> Consent of Donor.</label><br>
+ <select id="consent" name="consent" required>
+    <option value="select">select</option>
+     <option value="yes">yes</option>
+   </select>
+</div>
 
-        <!-- concent -->
-        <div class="input-group">
-           
-            <label for="consent">  my consent for organ donation.
-                <input class="check" type="checkbox" id="consent" name="consent" required> 
-            </label> 
-        </div>     
      <div class="btns-group">
         <a href="#" class="prevbutton button ">Previous</a>  
         <a href="#" class="nextbutton button ">Next</a>  
@@ -119,16 +122,20 @@
                <option value="guardian">Legal Guardian</option>
                <option value="close_family_friend">Close Family Friend</option>
              </select></div>
+
+       		         
         <!-- contact'of the person of your close relation  -->
         <div class="input-group">
             <label for="contactrelation">Contact of Authorized Representative: </label>
-        <input type="tel" id="contactrelation" name="contactrelation" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" maxlength="10">
+            <input type="text" id="contactrelation" name="contactrelation" maxlength="10" required>
         </div>
-
+		
         <div class="input-group">
-            <label for="consent"> Consent of Authorized Representative Person.
-                <input class="check" type="checkbox" id="consent" name="consent" required> 
-            </label> 
+            <label for="consent"> Consent of Authorized Representative Person.</label><br>
+         <select id="consent" name="consent" required>
+            <option value="select">select</option>
+             <option value="yes">yes</option>
+           </select>
         </div>
 
      <div class="btns-group">
