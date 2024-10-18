@@ -59,50 +59,6 @@ router.post("/register", (req, res) => {
   });
 });
 
-//   router.post('/registerRecipient', (req, res) => {
-//     console.log(req.body);  // For debugging
-
-//     const {
-//         adharnumber,
-//         fullname,
-//         weight,
-//         blood_group,
-//         birthdate,
-//         organs,
-//         urgency
-//     } = req.body;
-
-//     // Ensure organs are handled properly (comma-separated values)
-//     const organs_needed = Array.isArray(organs) ? organs.join(',') : organs;
-
-//     // SQL query to insert form data into the database
-//     const sql = `
-//         INSERT INTO Recipient (adharnumber, fullname, weight, blood_group, birthdate, organs_needed, urgency_level)
-//         VALUES (?, ?, ?, ?, ?, ?, ?)
-//     `;
-
-//     // Prepare the values for insertion
-//     const values = [
-//         adharnumber,
-//         fullname,
-//         weight,
-//         blood_group,
-//         birthdate,
-//         organs_needed,
-//         urgency
-//     ];
-
-//     // Execute the SQL query
-//     db.query(sql, values, (err, result) => {
-//         if (err) {
-//             console.error('Error inserting data:', err);
-//             res.status(500).send('Database insertion failed');
-//         } else {
-//             console.log('Recipient data inserted successfully:', result);
-//             res.send('Recipient Registration Successful!');
-//         }
-//     });
-// });
 
 router.post("/authenticateDonor", (req, res) => {
   const { adharnumber } = req.body;
@@ -165,6 +121,63 @@ router.post("/submitDonorConfirmation", (req, res) => {
     res.send("Donor details successfully updated.");
   });
 });
+
+router.post("/registerRecipient", (req, res) => {
+    const {
+      hospital,
+      weight,
+      blood_group,
+      birthdate,
+      organs, // array of organs
+      urgency
+    } = req.body;
+  
+    const organsNeeded = Array.isArray(organs) ? organs.join(',') : organs;
+  
+    // SQL query to insert data into Recipient table
+    const sqlInsertRecipient = `
+      INSERT INTO Recipient (hospital, weight, blood_group, birthdate, organs_needed, urgency_level)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `;
+  
+    const recipientValues = [hospital, weight, blood_group, birthdate, organsNeeded, urgency];
+  
+    // Insert recipient data into the database
+    db.query(sqlInsertRecipient, recipientValues, (err, result) => {
+      if (err) {
+        console.error("Error inserting recipient data:", err);
+        return res.status(500).send("Failed to register recipient");
+      }
+  
+      // Once recipient data is inserted, we fetch matching hospitals from Donor table
+      const sqlFetchHospitals = `
+        SELECT DISTINCT d.hospital_name
+        FROM Donor d
+        WHERE d.blood_group = ?
+        AND (
+          -- At least one organ must match between recipient and donor
+          (FIND_IN_SET('heart', d.organs) > 0 AND FIND_IN_SET('heart', ?) > 0) OR
+          (FIND_IN_SET('kidney', d.organs) > 0 AND FIND_IN_SET('kidney', ?) > 0) OR
+          (FIND_IN_SET('liver', d.organs) > 0 AND FIND_IN_SET('liver', ?) > 0) OR
+          (FIND_IN_SET('lungs', d.organs) > 0 AND FIND_IN_SET('lungs', ?) > 0) OR
+          (FIND_IN_SET('pancreas', d.organs) > 0 AND FIND_IN_SET('pancreas', ?) > 0) OR
+          (FIND_IN_SET('corneas', d.organs) > 0 AND FIND_IN_SET('corneas', ?) > 0)
+        )
+      `;
+  
+      // Execute the query to fetch matching hospitals
+      db.query(sqlFetchHospitals, [blood_group, organsNeeded, organsNeeded, organsNeeded, organsNeeded, organsNeeded, organsNeeded], (err, hospitals) => {
+        if (err) {
+          console.error("Error fetching hospitals:", err);
+          return res.status(500).send("Failed to fetch hospitals");
+        }
+  
+        // Render the hospitalsList EJS template with the list of matching hospitals
+        res.render("hospitalsList", { hospitals });
+      });
+    });
+  });
+  
 
 module.exports = {
   routes: router,
