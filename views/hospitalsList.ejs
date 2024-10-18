@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Hospitals</title>
+</head>
+<body>
+    <h1>Matching Hospitals for Organ Transplant</h1>
+
+    <% if (hospitals.length > 0) { %>
+        <ul>
+            <% hospitals.forEach(function(hospital) { %>
+                <li><%= hospital.hospital_name %></li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No matching hospitals found within the last 6 hours.</p>
+    <% } %>
+</body>
+</html>
