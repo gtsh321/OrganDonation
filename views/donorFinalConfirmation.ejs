@@ -8,7 +8,7 @@
     <title>Donor-Registration</title>
 </head>
 <body class="registration-body">
-    <form action="#" class="form">
+    <form action="/submitDonorConfirmation" method="POST" class="form">
         <h1 class="text-center">Donor Confirmation-Form</h1>
 
         <!-- progress-bar -->
@@ -24,8 +24,8 @@
             
             <!-- Adharnumber -->
             <div class="input-group">
-                <label for="adharnnumber">Donor's Adhar-Number</label>
-                <input type="text" name="adharnumber" id="adharnumber" maxlength="12" />
+                <label for="adharnumber">Donor's Aadhar Number</label>
+                <input type="text" name="adharnumber" id="adharnumber" value="<%= donor.adharnumber %>" readonly />
             </div>
 
          <!-- Weight Field -->
