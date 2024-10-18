@@ -24,3 +24,12 @@ CREATE TABLE Donor (
     consent_family VARCHAR(10)
 );
 
+CREATE TABLE Recipient (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    hospital VARCHAR(255) NOT NULL,
+    weight DECIMAL(5, 2) NOT NULL,
+    blood_group VARCHAR(3) NOT NULL,
+    birthdate DATE NOT NULL,
+    organs_needed VARCHAR(255),
+    urgency_level VARCHAR(50)
+);
