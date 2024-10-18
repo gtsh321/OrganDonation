@@ -28,12 +28,6 @@
                 <input type="text" name="adharnumber" id="adharnumber" maxlength="12" />
             </div>
 
-            <!-- fullname -->
-            <div class="input-group">
-                <label for="fullname">Donor's FullName</label>
-                <input type="text" name="fullname" id="fullname"/>
-            </div>
-
          <!-- Weight Field -->
         <div class="input-group">
             <label for="weight">Weight (in kg): </label>
@@ -58,12 +52,32 @@
                 <option value="O">O</option>
             </select>
             </div>
-                  
-            <!-- date-of-death-->
             <div class="input-group">
-                <label for="deathdate">Donor's Date Of Death</label>
-                <input type="date" name="deathdate" id="deathdate"/>
-            </div>
+                <label for="hospital">Select Hospital:</label>
+                <select id="hospital" name="hospital" required>
+                    <option value="" disabled selected>Select a hospital</option>
+                    <option value="Rajkot Civil Hospital">Rajkot Civil Hospital</option>
+                    <option value="Sterling Hospital">Sterling Hospital</option>
+                    <option value="Wockhardt Hospital">Wockhardt Hospital</option>
+                    <option value="Aastha Hospital">Aastha Hospital</option>
+                    <option value="Nirmal Hospital">Nirmal Hospital</option>
+                    <option value="Gokul Hospital">Gokul Hospital</option>
+                    <option value="Balaji Hospital">Balaji Hospital</option>
+                    <option value="Sunshine Hospital">Sunshine Hospital</option>
+                    <option value="Ayush Hospital">Ayush Hospital</option>
+                    <option value="Jalaram Hospital">Jalaram Hospital</option>
+                    <option value="Shiv Hospital">Shiv Hospital</option>
+                    <option value="Shraddha Hospital">Shraddha Hospital</option>
+                    <option value="Orchid Hospital">Orchid Hospital</option>
+                    <option value="Sunrise Hospital">Sunrise Hospital</option>
+                    <option value="Gokul Superspeciality Hospital">Gokul Superspeciality Hospital</option>
+                    <option value="Life Care Hospital">Life Care Hospital</option>
+                    <option value="BAPS Shastriji Maharaj Hospital">BAPS Shastriji Maharaj Hospital</option>
+                    <option value="Medicity Hospital">Medicity Hospital</option>
+                    <option value="Saurashtra Kidney Research Institute">Saurashtra Kidney Research Institute</option>
+                    <option value="Jeevandeep Hospital">Jeevandeep Hospital</option>
+                </select>
+            </div>       
 
             <!-- time of brain death -->
             <label for="time_of_death">Time of Death: </label>
