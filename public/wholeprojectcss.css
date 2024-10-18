@@ -12,6 +12,18 @@ html{
 }
 
 /* **********************utility-class***************** */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox-group label {
+    margin-bottom: 10px; /* Adds spacing between the labels */
+    display: flex;
+    justify-content: space-between;
+    width: 150px; /* Adjust width if needed */
+}
+
 .container{
     max-width: 1200px;
     width: 100%;
