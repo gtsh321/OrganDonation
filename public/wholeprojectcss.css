@@ -330,23 +330,74 @@ input.check {
     display: inline-block;
 }
 
-/**********for log in form *********/
-.center{
+/**********for authentication*********/
+body {
+    background-color: #f0f4f8;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.center {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     display: block;
-    background-color: #f1f4f5;
-    padding:  3rem 10rem;
-    color: #252929;
-    border: 1px solid #484949;
+    background-color: #ffffff;
+    padding: 3rem;
+    color: #333333;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 86, 179, 0.1);
+    max-width: 400px;
+    width: 90%;
+    transition: all 0.3s ease;
 }
 
-.box{
-    margin: 2rem;
-    font-size: 2rem;
+.center:hover {
+    box-shadow: 0 15px 30px rgba(0, 86, 179, 0.2);
 }
-h3.forlogin-form{
+
+.box {
+    margin: 1.5rem 0;
+}
+
+h3.forlogin-form {
     text-align: center;
+    font-size: 1.7rem;
+    margin-top: 2rem;
+    color: #666666;
+}
+
+h1.text-center {
+    color: #0056b3;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #0056b3;
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+input[type="text"] {
+    width: 95%;
+    padding: 0.75rem;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f8fafc;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+    background-color: #ffffff;
 }
