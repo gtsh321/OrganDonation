@@ -270,11 +270,21 @@ label{
 
 /*#######################*/
 .form{
-    width: clamp(500px,30% ,430px);
     margin: 0 auto;
-    border: 1px solid #ccc;
-    border-radius: 0.35rem;
-    padding: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    background-color: #ffffff;
+    padding: 2rem;
+    color: #333333;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 86, 179, 0.1);
+    max-width: 400px;
+    width: 90%;
+    transition: all 0.3s ease;
 }
 
 .form-step{
