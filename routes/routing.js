@@ -151,7 +151,7 @@ router.post("/registerRecipient", (req, res) => {
   
       // Once recipient data is inserted, we fetch matching hospitals from Donor table
       const sqlFetchHospitals = `
-        SELECT DISTINCT d.hospital_name
+        SELECT DISTINCT d.hospital_name, d.organs
         FROM Donor d
         WHERE d.blood_group = ?
         AND (
