@@ -52,33 +52,25 @@
                 <option value="O">O</option>
             </select>
             </div>
+
             <div class="input-group">
                 <label for="hospital">Select Hospital:</label>
-                <select id="hospital" name="hospital" required>
+                <select id="hospitalDropdown" name="hospital" onchange="setHospitalAddress()" required>
                     <option value="" disabled selected>Select a hospital</option>
-                    <option value="Rajkot Civil Hospital">Rajkot Civil Hospital</option>
-                    <option value="Sterling Hospital">Sterling Hospital</option>
-                    <option value="Wockhardt Hospital">Wockhardt Hospital</option>
-                    <option value="Aastha Hospital">Aastha Hospital</option>
-                    <option value="Nirmal Hospital">Nirmal Hospital</option>
-                    <option value="Gokul Hospital">Gokul Hospital</option>
-                    <option value="Balaji Hospital">Balaji Hospital</option>
-                    <option value="Sunshine Hospital">Sunshine Hospital</option>
-                    <option value="Ayush Hospital">Ayush Hospital</option>
-                    <option value="Jalaram Hospital">Jalaram Hospital</option>
-                    <option value="Shiv Hospital">Shiv Hospital</option>
-                    <option value="Shraddha Hospital">Shraddha Hospital</option>
-                    <option value="Orchid Hospital">Orchid Hospital</option>
-                    <option value="Sunrise Hospital">Sunrise Hospital</option>
-                    <option value="Gokul Superspeciality Hospital">Gokul Superspeciality Hospital</option>
-                    <option value="Life Care Hospital">Life Care Hospital</option>
-                    <option value="BAPS Shastriji Maharaj Hospital">BAPS Shastriji Maharaj Hospital</option>
-                    <option value="Medicity Hospital">Medicity Hospital</option>
-                    <option value="Saurashtra Kidney Research Institute">Saurashtra Kidney Research Institute</option>
-                    <option value="Jeevandeep Hospital">Jeevandeep Hospital</option>
+                    <!-- Populate hospitals dynamically from backend -->
+                    <% hospitals.forEach(hospital => { %>
+                        <option value="<%= hospital.hospital_name %>" data-address="<%= hospital.address %>">
+                            <%= hospital.hospital_name %>
+                        </option>
+                    <% }); %>
                 </select>
-            </div>       
-
+            </div>
+            
+            <!-- Hospital Address (auto-filled) -->
+            <div class="input-group">
+                <label for="hospital_address">Hospital Address:</label>
+                <input type="text" id="hospitalAddress" name="hospital_address" readonly>
+            </div>
             <!-- time of brain death -->
             <label for="time_of_death">Time of Death: </label>
             <input type="datetime-local" id="time_of_death" name="time_of_death" required>
@@ -107,6 +99,18 @@
     </div>
 </div>
 
+
+<div class="input-group">
+    <label for="donation_urgency">Urgency of Donation:</label>
+    <select id="donation_urgency" name="donation_urgency" required>
+      <option value="" disabled selected>Select urgency level</option>
+      <option value="Immediate">Immediate (Urgent - Cancer Patient)</option>
+      <option value="Within a Week">Within a Week</option>
+      <option value="Within a Month">Within a Month</option>
+      <option value="Flexible">Flexible (No Urgency)</option>
+    </select>
+</div>
+
       <!-- concent -->
       <div class="input-group">
         <label for="consent"> Consent of Donor.</label><br>
@@ -131,5 +135,15 @@
     </div>
  </div>  
     </form>
+
+    <script>
+        function setHospitalAddress() {
+            const dropdown = document.getElementById('hospitalDropdown');
+            const selectedOption = dropdown.options[dropdown.selectedIndex];
+            const address = selectedOption.getAttribute('data-address');
+            
+            document.getElementById('hospitalAddress').value = address;
+        }
+    </script>
 </body>
 </html>

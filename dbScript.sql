@@ -21,7 +21,10 @@ CREATE TABLE Donor (
     time_of_death DATETIME,
     organs VARCHAR(100),
    consent_donor VARCHAR(10),
-    consent_family VARCHAR(10)
+    consent_family VARCHAR(10),
+    donation_urgency VARCHAR(20),
+    hospital_address VARCHAR(100)
+
 );
 
 CREATE TABLE Recipient (
@@ -31,5 +34,15 @@ CREATE TABLE Recipient (
     blood_group VARCHAR(3) NOT NULL,
     birthdate DATE NOT NULL,
     organs_needed VARCHAR(255),
-    urgency_level VARCHAR(50)
+    donation_urgency VARCHAR(20)
+);
+
+
+CREATE TABLE Hospitals (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    hospital_name VARCHAR(100),
+    address TEXT,
+    contact_number VARCHAR(20),
+    available_organs TEXT,
+    city VARCHAR(50)
 );

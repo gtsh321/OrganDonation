@@ -63,16 +63,34 @@ router.post("/register", (req, res) => {
 router.post("/authenticateDonor", (req, res) => {
   const { adharnumber } = req.body;
 
-  const sql = "SELECT * FROM Donor WHERE adharnumber = ?";
-  db.query(sql, [adharnumber], (err, result) => {
+  const sqlDonor = "SELECT * FROM Donor WHERE adharnumber = ?";
+  const sqlHospitals = "SELECT hospital_name, address FROM Hospitals"; // Query to get hospital details
+
+  db.query(sqlDonor, [adharnumber], (err, result) => {
     if (err) {
       console.error("Error querying the database:", err);
-      res.status(500).send("Database query failed");
-    } else if (result.length > 0) {
+      return res.status(500).send("Database query failed");
+    } 
+
+    // Check if the donor exists
+    if (result.length > 0) {
       // Aadhar number found, store it in the session
       req.session.adharnumber = adharnumber;
-      console.log("session stores =", req.session.adharnumber);
-      res.render("donorFinalConfirmation", { donor: result[0] }); // Redirect to the confirmation page
+      console.log("Session stored =", req.session.adharnumber);
+
+      // Now query the Hospitals table to get the list of hospitals
+      db.query(sqlHospitals, (err, hospitals) => {
+        if (err) {
+          console.error("Error querying the hospitals table:", err);
+          return res.status(500).send("Failed to fetch hospitals");
+        }
+
+        // Render the confirmation page with donor and hospital data
+        res.render("donorFinalConfirmation", { 
+          donor: result[0],  // Pass the donor data
+          hospitals: hospitals // Pass the list of hospitals
+        });
+      });
     } else {
       // Aadhar number not found, render login page with error message
       res.render("login", {
@@ -91,7 +109,10 @@ router.post("/submitDonorConfirmation", (req, res) => {
     organs,
     consent_donor,
     consent_family,
+    donation_urgency,
+    hospital_address
   } = req.body;
+  console.log("hiiiiiii =", hospital_address);
   const adharnumber = req.session.adharnumber; // Fetch aadhar number from session
 
   if (!adharnumber) {
@@ -99,7 +120,7 @@ router.post("/submitDonorConfirmation", (req, res) => {
   }
 
   const sql = `UPDATE Donor 
-                 SET weight = ?, blood_group = ?, hospital_name = ?, time_of_death = ?, organs = ?, consent_donor = ?, consent_family = ? 
+                 SET weight = ?, blood_group = ?, hospital_name = ?, time_of_death = ?, organs = ?, consent_donor = ?, consent_family = ?, donation_urgency = ?,hospital_address = ? 
                  WHERE adharnumber = ?`;
 
   const values = [
@@ -110,7 +131,9 @@ router.post("/submitDonorConfirmation", (req, res) => {
     organs.toString(),
     consent_donor === "yes" ? 1 : 0,
     consent_family === "yes" ? 1 : 0,
-    adharnumber,
+    donation_urgency,
+    hospital_address,
+    adharnumber
   ];
 
   db.query(sql, values, (err, result) => {
@@ -129,18 +152,18 @@ router.post("/registerRecipient", (req, res) => {
       blood_group,
       birthdate,
       organs, // array of organs
-      urgency
+      donation_urgency
     } = req.body;
   
     const organsNeeded = Array.isArray(organs) ? organs.join(',') : organs;
   
     // SQL query to insert data into Recipient table
     const sqlInsertRecipient = `
-      INSERT INTO Recipient (hospital, weight, blood_group, birthdate, organs_needed, urgency_level)
+      INSERT INTO Recipient (hospital, weight, blood_group, birthdate, organs_needed, donation_urgency)
       VALUES (?, ?, ?, ?, ?, ?)
     `;
   
-    const recipientValues = [hospital, weight, blood_group, birthdate, organsNeeded, urgency];
+    const recipientValues = [hospital, weight, blood_group, birthdate, organsNeeded, donation_urgency];
   
     // Insert recipient data into the database
     db.query(sqlInsertRecipient, recipientValues, (err, result) => {

@@ -104,16 +104,16 @@
     </div>
 </div>
         
-        <div class="input-group">
-            <label>Urgency of Recipient:</label>
-            <select name="urgency">
-            <option value="">Select urgency level</option>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-            <option value="Critical">Critical</option> <br><br>  
-        </div>
-
+<div class="input-group">
+    <label for="donation_urgency">Urgency of Donation:</label>
+    <select id="donation_urgency" name="donation_urgency" required>
+      <option value="" disabled selected>Select urgency level</option>
+      <option value="immediate">Immediate (Urgent - Cancer Patient)</option>
+      <option value="within-a-week">Within a Week</option>
+      <option value="within-a-month">Within a Month</option>
+      <option value="flexible">Flexible (No Urgency)</option>
+    </select>
+</div>
         <div class="btns-group">
         <a href="#" class="prevbutton button">Previous</a>  
         <input type="submit" value="Submit" class="button"> 
